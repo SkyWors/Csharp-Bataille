@@ -4,11 +4,20 @@ using System.Collections.Generic;
 
 namespace Bataille
 {
+    static class global
+    {
+        public static int[][] globalCard = new int[4][];
+    }
     internal class Program
     {
 
         static void Main(string[] args)
         {
+            for (int i = 0; i < 4; i++)
+            {
+                global.globalCard[i] = new int[8];
+            }
+
             Stack<int> player1 = new Stack<int>();
             Stack<int> player2 = new Stack<int>();
 
