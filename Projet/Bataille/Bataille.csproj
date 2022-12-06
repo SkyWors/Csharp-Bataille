@@ -49,7 +49,6 @@
     <Compile Include="ft_createCard.cs" />
     <Compile Include="ft_design.cs" />
     <Compile Include="ft_distrib.cs" />
-    <Compile Include="ft_randomizeCard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

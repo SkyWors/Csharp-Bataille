@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.Collections.Generic;
 
 namespace Bataille
 {
@@ -16,6 +11,11 @@ namespace Bataille
             foreach (int i in actual)
                 temp.Push(i);
             actual.Clear();
+
+            //Randomize value
+            //value.Sh
+
+
 
             foreach (int i in value)
                 actual.Push(i);

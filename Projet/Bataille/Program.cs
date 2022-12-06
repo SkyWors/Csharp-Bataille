@@ -59,6 +59,8 @@ namespace Bataille
                 }
                 else
                 {
+                    Console.WriteLine("    _____________________________________\n");
+
                     int cardPlayer1 = global.player1.Pop();
                     int cardPlayer2 = global.player2.Pop();
 
@@ -72,8 +74,8 @@ namespace Bataille
                     ft_addcard.revertCard(global.player1, result1);
                     ft_addcard.revertCard(global.player2, result2);
 
-                    ft_check.check(global.player1, $"Player 1 ({global.player1.Count})");
-                    ft_check.check(global.player2, $"Player 2 ({global.player2.Count})");
+                    ft_check.check(global.player1, $"Carte du Joueur 1 ({global.player1.Count})");
+                    ft_check.check(global.player2, $"Carte du Joueur 2 ({global.player2.Count})");
                 }
             }
 

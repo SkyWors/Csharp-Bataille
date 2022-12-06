@@ -18,22 +18,25 @@ namespace Bataille
             temp.Push(valuePlayer1);
             temp.Push(valuePlayer2);
 
-            if (valuePlayer1 == valuePlayer2)
+            if ((valuePlayer1%8) == (valuePlayer2%8))
             {
                 result1.Push(valuePlayer1);
-                result1.Push(valuePlayer2);
+                result2.Push(valuePlayer2);
+                ft_design.design(">>  Egalité\n", true);
             }
             else
             {
-                if (valuePlayer1 > valuePlayer2)
+                if ((valuePlayer1%8) > (valuePlayer2%8))
                 {
                     foreach (int value in temp)
                         result1.Push(value);
+                    ft_design.design(">>  Le Joueur 1 a gagné le tour !\n", true);
                 }
                 else
                 {
                     foreach (int value in temp)
                         result2.Push(value);
+                    ft_design.design(">>  Le Joueur 2 a gagné le tour !\n", true);
                 }
             }
         }
