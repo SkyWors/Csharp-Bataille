@@ -18,8 +18,9 @@ namespace Csharp_BAtaille
         static class global
         {        
             public static Stack player1 = new Stack();
+            public static Stack player2 = new Stack();
 
-         public static Stack player2 = new Stack();
+            public static int[] randomSlot = new int[32];
         }
 
 
@@ -38,112 +39,105 @@ namespace Csharp_BAtaille
         }// fin creercarte
 
      
-        static string AfficherCarte(int pi)
+        static string translateCard(int number)
         {
-            int fig = carte[pi];
-            string figure = fig.ToString();
+            string figure = carte[number].ToString();
+            switch (carte[number])
+            {
+                case VALET:
+                    figure = "VALET";
+                    break;
+                case DAME:
+                    figure = "DAME";
+                    break;
+                case ROI:
+                    figure = "ROI";
+                    break;
+                case AS:
+                    figure = "AS";
+                    break;
+            }
 
+            string color = "";
+            switch (couleur[number])
+            {
+                case PIQUE:
+                    color = "PIQUE";
+                    break;
+                case CARREAU:
+                    color = "CARREAU";
+                    break;
+                case COEUR:
+                    color = "COEUR";
+                    break;
+                case TREFLE:
+                    color = "TREFLE";
+                    break;
+            }
 
-
-            if (fig == VALET) figure = "VALET";
-            if (fig == DAME) figure = "DAME";
-            if (fig == ROI) figure = "ROI";
-            if (fig == AS) figure = "AS";
-
-
-
-            int coul = couleur[pi];
-            string colori = "";
-
-
-
-            if (coul == PIQUE) colori = "pique";
-            if (coul == CARREAU) colori = "carreau";
-            if (coul == COEUR) colori = "coeur";
-            if (coul == TREFLE) colori = "trefle";
-
-
-
-            return (figure + " de " + colori);
+            return (figure + " de " + color);
         }
 
-
-
-        /// <summary>
-        /// AfficherLesCartes : affiche toutes les cartes du jeu 
-        /// </summary>
-        static void AfficherLesCartes()
+        static void addCard()
         {
             int j = 0;
             for (int i = 0; i < 32; i++)
             {
                 if (j % 8 == 0) Console.WriteLine();
-                Console.Write("{0}\n", AfficherCarte(i));
+
                 card[i] = i;
-
                 j++;
-
-
             }
+        }
 
-            Console.WriteLine("Voici toutes les cartes du jeu fusionné : ");
+        static void displayCard()
+        {
             for(int a = 0; a < 32; a++)
             {
-
-                Console.Write(" {0} ", AfficherCarte(card[a]));
+                Console.Write(" {0} ", translateCard(card[a]));
             }
-
-
-
         }
-
-
 
         static void addcardtoplayer(Stack player)
-        {
-            
+        {           
             Random rnd = new Random();
- 
-                
-            for (int a = 0; a < 16; a++)
+
+            int a = 0;
+            while (a < 16)
             {
-                int randomcard = rnd.Next(0, card.Length);
-                player.Push(card[randomcard]);
-
-            }                
-            checkCard(global.player1, global.player2);
-
-
-            foreach (int items in global.player1)
-                Console.WriteLine("Le joueur 1 a ces cartes : - {0} ", AfficherCarte(items));
-            Console.WriteLine("le joueur 1 a {0} de cartes", global.player1.Count);
-
-            foreach (int item in global.player2)
-                Console.WriteLine("Le joueur 2 a ces cartes - {0}", AfficherCarte(item));
-
-        }
-
-        static void checkCard(Stack player1, Stack player2)
-        {
-            foreach(int items in global.player1)
-            {
-            if(player1.Contains(global.player2))
-                   addcardtoplayer(player1);
-
+                int randomCard = rnd.Next(32);
+                if (!(global.randomSlot.Contains(randomCard)))
+                {
+                    player.Push(card[randomCard]);
+                    global.randomSlot[randomCard] = randomCard;
+                    a++;
+                }
             }
+
+            foreach (int items in player)
+                Console.WriteLine("Le joueur a ses cartes : - {0} ", translateCard(items));
+
+            Console.WriteLine();
+
         }
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            //Console.WriteLine(PIQUE);
+            foreach (int items in card)
+            {
+                global.randomSlot[items] = -1;
+            }
 
- 
             CreerCartes();
-            AfficherLesCartes();           
-            addcardtoplayer(global.player1);
+            addCard();
 
+            displayCard();
+
+            addcardtoplayer(global.player1);
             addcardtoplayer(global.player2);
+
+            Console.WriteLine("le joueur 1 a {0} de cartes", global.player1.Count);
+            Console.WriteLine("le joueur 2 a {0} de cartes", global.player2.Count);
 
             Console.ReadKey();
         }

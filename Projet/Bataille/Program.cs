@@ -1,46 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace Bataille
 {
     static class global
     {
-        public static int[][] globalCard = new int[4][];
+        public static Stack<int> player1 = new Stack<int>();
+        public static Stack<int> player2 = new Stack<int>();
+
+        public static int[] randomSlot = new int[32];
+
+        public const int PIQUE = 0, CARREAU = 1, COEUR = 2, TREFLE = 3;
+        public const int SEPT = 7, HUIT = 8, NEUF = 9, DIX = 10, VALET = 11, DAME = 12, ROI = 13, AS = 14;
+        public static int[] carte = new int[32];
+        public static int[] couleur = new int[32];
+        public static int[] card = new int[32];
     }
     internal class Program
     {
 
         static void Main(string[] args)
         {
-            for (int i = 0; i < 4; i++)
+            foreach (int items in global.card)
             {
-                global.globalCard[i] = new int[8];
+                global.randomSlot[items] = -1;
             }
 
-            Stack<int> player1 = new Stack<int>();
-            Stack<int> player2 = new Stack<int>();
-
             ft_createCard.createCard();
+            ft_createCard.addCard();
 
-            ft_design.design("Couper ou ? ", false);
-            int slot = Convert.ToInt32(Console.ReadLine());
+            ft_distrib.distrib(global.player1);
+            ft_distrib.distrib(global.player2);
 
-            ft_distrib.distrib(player1, slot);
-            ft_distrib.distrib(player2, 0);
-
-            ft_check.check(player1, "Player1");
-            ft_check.check(player2, "Player2");
+            ft_check.check(global.player1, "Joueur 1");
+            ft_check.check(global.player2, "Joueur 2");
 
             ft_design.design("Combien de tours ? ", false);
             int tours = Convert.ToInt32(Console.ReadLine());
 
-            //int Timestamp = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            //int Timestamp = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds
 
             for (int i = 0; i < tours; i++)
             {
-                int count1 = player1.Count;
-                int count2 = player2.Count;
+                int count1 = global.player1.Count;
+                int count2 = global.player2.Count;
                 if (count1 == 0 || count2 == 0)
                 {
                     if (count1 == 0)
@@ -56,19 +59,21 @@ namespace Bataille
                 }
                 else
                 {
-                    int cardPlayer1 = player1.Pop();
-                    int cardPlayer2 = player2.Pop();
+                    int cardPlayer1 = global.player1.Pop();
+                    int cardPlayer2 = global.player2.Pop();
 
-                    ft_design.design($"Joueur 1 : {cardPlayer1}", true);
-                    ft_design.design($"Joueur 2 : {cardPlayer2}", true);
+                    ft_design.design($"Joueur 1 : {ft_design.translate(cardPlayer1)}", true);
+                    ft_design.design($"Joueur 2 : {ft_design.translate(cardPlayer2)}", true);
+
+                    Console.WriteLine();
 
                     ft_compare.compare(cardPlayer1, cardPlayer2, out Stack<int> result1, out Stack<int> result2);
 
-                    ft_addcard.addcard(player1, result1);
-                    ft_addcard.addcard(player2, result2);
+                    ft_addcard.revertCard(global.player1, result1);
+                    ft_addcard.revertCard(global.player2, result2);
 
-                    ft_check.check(player1, "Player1");
-                    ft_check.check(player2, "Player2");
+                    ft_check.check(global.player1, $"Player 1 ({global.player1.Count})");
+                    ft_check.check(global.player2, $"Player 2 ({global.player2.Count})");
                 }
             }
 

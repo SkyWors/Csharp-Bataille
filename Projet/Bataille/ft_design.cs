@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.ConstrainedExecution;
 
 namespace Bataille
 {
@@ -12,55 +13,43 @@ namespace Bataille
                 Console.Write($"{arg}");
         }
 
-        public static string translate(int value, string type)
+        public static string translate(int number)
         {
-            if (type == "card")
+            string figure = global.carte[number].ToString();
+            switch (global.carte[number])
             {
-                switch (value)
-                {
-                    case 2:
-                        return ("DEUX ");
-                    case 3:
-                        return ("TROIS ");
-                    case 4:
-                        return ("QUATRE ");
-                    case 5:
-                        return ("CINQ ");
-                    case 6:
-                        return ("SIX ");
-                    case 7:
-                        return ("SEPT ");
-                    case 8:
-                        return ("HUIT ");
-                    case 9:
-                        return ("NEUF ");
-                    case 10:
-                        return ("DIX ");
-                    case 11:
-                        return ("VALET ");
-                    case 12:
-                        return ("DAME ");
-                    case 13:
-                        return ("ROI ");
-                    case 14:
-                        return ("AS ");
-                }
+                case global.VALET:
+                    figure = "VALET";
+                    break;
+                case global.DAME:
+                    figure = "DAME";
+                    break;
+                case global.ROI:
+                    figure = "ROI";
+                    break;
+                case global.AS:
+                    figure = "AS";
+                    break;
             }
-            else
+
+            string color = "";
+            switch (global.couleur[number])
             {
-                switch (value)
-                {
-                    case 0:
-                        return ("PIQUE ");
-                    case 1:
-                        return ("CARREAU");
-                    case 2:
-                        return ("COEUR ");
-                    case 3:
-                        return ("TREFLE ");
-                }
+                case global.PIQUE:
+                    color = "PIQUE";
+                    break;
+                case global.CARREAU:
+                    color = "CARREAU";
+                    break;
+                case global.COEUR:
+                    color = "COEUR";
+                    break;
+                case global.TREFLE:
+                    color = "TREFLE";
+                    break;
             }
-            return ("null");
+
+            return (figure + " de " + color);
         }
     }
 }

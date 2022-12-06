@@ -9,7 +9,7 @@ namespace Bataille
 {
     internal class ft_addcard
     {
-        public static void addcard(Stack<int> actual, Stack<int> value)
+        public static void revertCard(Stack<int> actual, Stack<int> value)
         {
             Stack<int> temp = new Stack<int>();
 

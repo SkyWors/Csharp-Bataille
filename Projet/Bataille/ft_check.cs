@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bataille
 {
@@ -14,26 +11,10 @@ namespace Bataille
             int i = 1;
             foreach (int value in pile)
             {
-                Console.Write($"C{i} : {value}   ");
+                ft_design.design(($"  {ft_design.translate(value)}"), true);
                 i++;
             }
             Console.WriteLine();
         }
-        public static void checkCard(int[] card, int[] color)
-        {
-            for (int i = 0; i < card.Length; i++)
-            {
-                ft_design.design($"C{i} : {ft_design.translate(card[i], "card")} {ft_design.translate(color[i], "color")}", true);
-            }
-            Console.WriteLine();
-        }
-        //public static void cardColor()
-        //{
-        //    for (int i = 0; i < color.Length; i++)
-        //    {
-        //        ft_design.design($"C{i} : {ft_design.translate(color[i], "color")}", false);
-        //    }
-        //    Console.WriteLine();
-        //}
     }
 }
