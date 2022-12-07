@@ -59,7 +59,7 @@ namespace Bataille
                 }
                 else
                 {
-                    Console.WriteLine("    _____________________________________\n");
+                    Console.WriteLine($"    _____________________________________ [Tours {i+1}/{tours}]\n");
 
                     int cardPlayer1 = global.player1.Pop();
                     int cardPlayer2 = global.player2.Pop();
@@ -73,6 +73,8 @@ namespace Bataille
 
                     ft_addcard.revertCard(global.player1, result1);
                     ft_addcard.revertCard(global.player2, result2);
+                    
+                    Console.WriteLine("    _____________________________________\n");
 
                     ft_check.check(global.player1, $"Carte du Joueur 1 ({global.player1.Count})");
                     ft_check.check(global.player2, $"Carte du Joueur 2 ({global.player2.Count})");

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Bataille
 {
@@ -13,9 +14,25 @@ namespace Bataille
             actual.Clear();
 
             //Randomize value
-            //value.Sh
+            Stack<int> tempo = new Stack<int>();
 
+            Random rnd = new Random();
 
+            if (value.Count > 1)
+            {
+                int randomard = rnd.Next(3);
+                if (randomard == 0)
+                {
+                    tempo.Push(value.Peek());
+                    value.Pop();
+
+                    tempo.Push(value.Peek());
+                    value.Pop();
+                }
+
+                foreach (int i in tempo)
+                    actual.Push(i);
+            }
 
             foreach (int i in value)
                 actual.Push(i);
