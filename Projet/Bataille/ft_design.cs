@@ -30,6 +30,19 @@ namespace Bataille
                 case global.AS:
                     figure = "AS";
                     break;
+
+                case global.SEPT:
+                    figure = "SEPT";
+                    break;
+                case global.HUIT:
+                    figure = "HUIT";
+                    break;
+                case global.NEUF:
+                    figure = "NEUF";
+                    break;
+                case global.DIX:
+                    figure = "DIX";
+                    break;
             }
 
             string color = "";
