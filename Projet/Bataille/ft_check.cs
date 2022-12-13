@@ -8,7 +8,7 @@ namespace Bataille
     {
         public static void check()
         {
-            ft_design.design($"\t Joueur 1 ({global.player1.Count}) \t\t Joueur 2 ({global.player2.Count})\n", true);
+            ft_design.design($"\tJoueur 1 ({global.player1.Count}) \t\t   Joueur 2 ({global.player2.Count})\n", true);
             for (int i = 0; i < 32; i++)
             {
                 int value1 = -1;

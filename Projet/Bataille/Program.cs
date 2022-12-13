@@ -11,7 +11,7 @@ namespace Bataille
         public static int[] randomSlot = new int[32];
 
         public const int PIQUE = 0, CARREAU = 1, COEUR = 2, TREFLE = 3;
-        public const int ZERO = 0, SEPT = 7, HUIT = 8, NEUF = 9, DIX = 10, VALET = 11, DAME = 12, ROI = 13, AS = 14;
+        public const int SEPT = 7, HUIT = 8, NEUF = 9, DIX = 10, VALET = 11, DAME = 12, ROI = 13, AS = 14;
         public static int[] carte = new int[32];
         public static int[] couleur = new int[32];
         public static int[] card = new int[32];
@@ -33,9 +33,7 @@ namespace Bataille
             ft_distrib.distrib(global.player2);
 
             ft_check.check();
-            //ft_check.check(global.player1, $"Carte du Joueur 1 ({global.player1.Count})");
-            //ft_check.check(global.player2, $"Carte du Joueur 2 ({global.player2.Count})");
-
+            
             ft_design.design("Combien de tours ? ", false);
             int tours = Convert.ToInt32(Console.ReadLine());
 
@@ -78,8 +76,6 @@ namespace Bataille
                     Console.WriteLine("    _____________________________________\n");
 
                     ft_check.check();
-                    //ft_check.check(global.player1, $"Carte du Joueur 1 ({global.player1.Count})");
-                    //ft_check.check(global.player2, $"Carte du Joueur 2 ({global.player2.Count})");
                 }
             }
 
