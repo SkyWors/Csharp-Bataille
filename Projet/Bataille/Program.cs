@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Bataille
 {
@@ -7,6 +8,8 @@ namespace Bataille
     {
         public static Stack<int> player1 = new Stack<int>();
         public static Stack<int> player2 = new Stack<int>();
+
+        public static Stack<int> temp = new Stack<int>();
 
         public static int[] randomSlot = new int[32];
 
@@ -16,9 +19,9 @@ namespace Bataille
         public static int[] couleur = new int[32];
         public static int[] card = new int[32];
     }
+
     internal class Program
     {
-
         static void Main(string[] args)
         {
             foreach (int items in global.card)
@@ -77,6 +80,7 @@ namespace Bataille
 
                     ft_check.check();
                 }
+                Thread.Sleep(22);
             }
 
             ft_design.design("Jeux terminé.", true);
